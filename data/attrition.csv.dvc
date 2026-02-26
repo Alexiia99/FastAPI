@@ -1,0 +1,5 @@
+outs:
+- md5: 85384ea3405664d370ae7e57468e1038
+  size: 138756
+  hash: md5
+  path: attrition.csv
