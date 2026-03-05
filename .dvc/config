@@ -1,4 +1,4 @@
 [core]
-    remote = gdrive
-['remote "gdrive"']
-    url = gdrive://1Am_RLXrQU1k_FRo_Nj2X5xB-vYJxxMPQ
+    remote = local_remote
+['remote "local_remote"']
+    url = /home/alexia/dvc-remote
