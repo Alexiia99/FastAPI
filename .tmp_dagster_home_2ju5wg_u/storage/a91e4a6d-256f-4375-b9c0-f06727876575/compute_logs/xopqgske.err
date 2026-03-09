@@ -1,0 +1,7 @@
+[32m2026-03-05 17:30:59 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a91e4a6d-256f-4375-b9c0-f06727876575 - 17922 - LOGS_CAPTURED - Started capturing logs in process (pid: 17922).
+[32m2026-03-05 17:31:00 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a91e4a6d-256f-4375-b9c0-f06727876575 - 17922 - raw_dataset - STEP_START - Started execution of step "raw_dataset".
+[32m2026-03-05 17:31:00 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a91e4a6d-256f-4375-b9c0-f06727876575 - 17922 - raw_dataset - STEP_OUTPUT - Yielded output "result" of type "DataFrame". (Type check passed).
+[32m2026-03-05 17:31:00 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a91e4a6d-256f-4375-b9c0-f06727876575 - raw_dataset - Writing file at: /home/alexia/MLOps/Entrega6/07-mlflow-dvc-dagster-integration-Alexiia99/.tmp_dagster_home_2ju5wg_u/storage/raw_dataset using PickledObjectFilesystemIOManager...
+[32m2026-03-05 17:31:00 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a91e4a6d-256f-4375-b9c0-f06727876575 - 17922 - raw_dataset - ASSET_MATERIALIZATION - Materialized value raw_dataset.
+[32m2026-03-05 17:31:00 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a91e4a6d-256f-4375-b9c0-f06727876575 - 17922 - raw_dataset - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+[32m2026-03-05 17:31:00 +0100[0m - dagster - [34mDEBUG[0m - __ASSET_JOB - a91e4a6d-256f-4375-b9c0-f06727876575 - 17922 - raw_dataset - STEP_SUCCESS - Finished execution of step "raw_dataset" in 99ms.

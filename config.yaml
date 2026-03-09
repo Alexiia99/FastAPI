@@ -1,0 +1,11 @@
+data:
+  path: "data/attrition.csv"
+
+mlflow:
+  tracking_uri: "http://localhost:5000"
+  experiment: "Attrition_Prediction"
+  model_name: "AttritionModel"
+
+optuna:
+  n_trials: 30
+  cv_splits: 5
