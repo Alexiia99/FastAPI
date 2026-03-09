@@ -121,6 +121,10 @@ dvc checkout
 git checkout main -- data/attrition.csv.dvc
 dvc checkout
 ```
+## 🌼Problemas que he tenido con el versionado
+
+En un primer lugar intenté conectarlo a google drive para controlar y guardar ahí el versionado pero, al no ser posible por temas de permisos,como solución configuré un remoto local con (`~/dvc-remote`) que cumple la función de simular el trabajo en equipo y el versionado fuera de git.
+
 
 ## 🌼 Configuración
 
