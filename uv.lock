@@ -23,9 +23,11 @@ dependencies = [
 [package.dev-dependencies]
 monitoring = [
     { name = "evidently" },
+    { name = "fastapi" },
     { name = "pandas" },
     { name = "pyyaml" },
     { name = "requests" },
+    { name = "uvicorn" },
 ]
 serving = [
     { name = "fastapi" },
@@ -54,9 +56,11 @@ requires-dist = [
 [package.metadata.requires-dev]
 monitoring = [
     { name = "evidently", specifier = "==0.7.21" },
+    { name = "fastapi" },
     { name = "pandas" },
     { name = "pyyaml" },
     { name = "requests" },
+    { name = "uvicorn" },
 ]
 serving = [
     { name = "fastapi", specifier = ">=0.133.1" },

@@ -6,6 +6,7 @@ from evidently import Report
 from evidently.presets import DataDriftPreset, DataSummaryPreset
 from evidently.metrics import ValueDrift, DriftedColumnsCount
 from evidently.ui.workspace import Workspace
+from mailer import send_drift_notification
 
 PREDICTIONS_LOG = os.getenv("PREDICTIONS_LOG", "/logs/predictions.csv")
 REFERENCE_DATA  = os.getenv("REFERENCE_DATA", "/app/data/attrition_v1.csv")
@@ -66,6 +67,8 @@ def run_monitoring():
     workspace = Workspace(WORKSPACE_DIR)
     project = get_or_create_project(workspace, "attrition_monitoring")
 
+    retraining_triggered = False
+
     while True:
         try:
             if not os.path.exists(PREDICTIONS_LOG):
@@ -81,9 +84,15 @@ def run_monitoring():
 
                     if drift_detected(snapshot):
                         print(f"🌸  [{datetime.now().strftime('%H:%M:%S')}] DRIFT DETECTADO")
-                        print("   Revisa el dashboard en http://localhost:8001")
+                        if not retraining_triggered:
+                            send_drift_notification()
+                            retraining_triggered = True
+                            print("📧 Notificación enviada — esperando decisión del usuario")
+                        else:
+                            print("🌸 Notificación ya enviada — esperando decisión")
                     else:
                         print(f"🌸 [{datetime.now().strftime('%H:%M:%S')}] Sin drift")
+                        retraining_triggered = False
 
         except Exception as e:
             print(f"🌸 Error en monitorización: {e}")

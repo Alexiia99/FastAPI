@@ -33,6 +33,8 @@ monitoring = [
     "pandas",
     "requests",
     "pyyaml",
+    "fastapi",
+    "uvicorn",
 ]
 
 [tool.setuptools.packages.find]

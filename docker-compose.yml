@@ -65,6 +65,12 @@ services:
     volumes:
       - predictions_logs:/logs
 
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
   evidently:
     build:
       context: .
@@ -73,14 +79,19 @@ services:
       - predictions_logs:/logs
       - ./data:/app/data
       - evidently_workspace:/workspace
+      - ./config.yaml:/app/config.yaml
     ports:
       - "8001:8000"
+      - "8002:8002"
     depends_on:
       - api
       - dagster
+      - mailhog
     environment:
       DAGSTER_URL: http://dagster:3000
       REFERENCE_DATA: /app/data/attrition_v1.csv
+      MONITORING_URL: http://localhost:8002
+      EVIDENTLY_URL: http://localhost:8001
 
 volumes:
   postgres_data:
