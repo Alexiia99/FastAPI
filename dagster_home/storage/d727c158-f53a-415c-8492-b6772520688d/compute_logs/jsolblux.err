@@ -1,0 +1,19 @@
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - LOGS_CAPTURED - Started capturing logs in process (pid: 7645).
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - STEP_START - Started execution of step "best_model".
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - best_model - Loading file from: /app/dagster_home/storage/hp_optimization_study using PickledObjectFilesystemIOManager...
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - LOADED_INPUT - Loaded input "hp_optimization_study" using input manager "io_manager", from output "result" of step "hp_optimization_study"
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - best_model - Loading file from: /app/dagster_home/storage/process_dataset using PickledObjectFilesystemIOManager...
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - LOADED_INPUT - Loaded input "process_dataset" using input manager "io_manager", from output "result" of step "process_dataset"
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - STEP_INPUT - Got input "hp_optimization_study" of type "String". (Type check passed).
+2026-04-16 15:22:25 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - STEP_INPUT - Got input "process_dataset" of type "dict". (Type check passed).
+2026/04/16 15:22:25 WARNING mlflow.models.model: `artifact_path` is deprecated. Please use `name` instead.
+2026/04/16 15:22:26 WARNING mlflow.sklearn: Saving scikit-learn models in the pickle or cloudpickle format requires exercising caution because these formats rely on Python's object serialization mechanism, which can execute arbitrary code during deserialization. The recommended safe alternative is the 'skops' format. For more information, see: https://scikit-learn.org/stable/model_persistence.html
+2026/04/16 15:22:28 WARNING mlflow.utils.environment: Failed to resolve installed pip version. ``pip`` will be added to conda.yaml environment spec without a version specifier.
+Successfully registered model 'AttritionModel'.
+2026/04/16 15:22:29 INFO mlflow.store.model_registry.abstract_store: Waiting up to 300 seconds for model version to finish creation. Model name: AttritionModel, version 1
+Created version '1' of model 'AttritionModel'.
+2026-04-16 15:22:29 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - STEP_OUTPUT - Yielded output "result" of type "String". (Type check passed).
+2026-04-16 15:22:29 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - best_model - Writing file at: /app/dagster_home/storage/best_model using PickledObjectFilesystemIOManager...
+2026-04-16 15:22:29 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - ASSET_MATERIALIZATION - Materialized value best_model.
+2026-04-16 15:22:29 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2026-04-16 15:22:29 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 7645 - best_model - STEP_SUCCESS - Finished execution of step "best_model" in 4.19s.

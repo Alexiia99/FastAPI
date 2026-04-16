@@ -1,0 +1,7 @@
+2026-04-16 15:22:02 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 6646 - LOGS_CAPTURED - Started capturing logs in process (pid: 6646).
+2026-04-16 15:22:02 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 6646 - raw_dataset - STEP_START - Started execution of step "raw_dataset".
+2026-04-16 15:22:02 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 6646 - raw_dataset - STEP_OUTPUT - Yielded output "result" of type "DataFrame". (Type check passed).
+2026-04-16 15:22:02 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - raw_dataset - Writing file at: /app/dagster_home/storage/raw_dataset using PickledObjectFilesystemIOManager...
+2026-04-16 15:22:02 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 6646 - raw_dataset - ASSET_MATERIALIZATION - Materialized value raw_dataset.
+2026-04-16 15:22:02 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 6646 - raw_dataset - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2026-04-16 15:22:02 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 6646 - raw_dataset - STEP_SUCCESS - Finished execution of step "raw_dataset" in 96ms.

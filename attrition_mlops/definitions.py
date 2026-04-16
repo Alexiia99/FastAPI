@@ -1,3 +1,4 @@
+import os
 import yaml
 from dagster import Definitions, load_assets_from_modules, define_asset_job, AssetSelection
 
@@ -8,21 +9,21 @@ from attrition_mlops.resources.mlflow_resource import MLflowResource
 with open("config.yaml") as f:
     config = yaml.safe_load(f)
 
-# Cargar todos los assets de los módulos data y ml
+# La variable de entorno sobreescribe el config.yaml
+tracking_uri = os.getenv("MLFLOW_TRACKING_URI", config["mlflow"]["tracking_uri"])
+
 all_assets = load_assets_from_modules([data, ml])
 
-# Definir el job que ejecuta todo el pipeline
 full_pipeline_job = define_asset_job(
     name="full_pipeline_job",
     selection=AssetSelection.all()
 )
 
-# Punto de entrada de Dagster
 defs = Definitions(
     assets=all_assets,
     resources={
         "mlflow_resource": MLflowResource(
-            tracking_uri=config["mlflow"]["tracking_uri"],
+            tracking_uri=tracking_uri,
             experiment=config["mlflow"]["experiment"],
             model_name=config["mlflow"]["model_name"],
         )

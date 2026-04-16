@@ -1,0 +1,10 @@
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - LOGS_CAPTURED - Started capturing logs in process (pid: 8009).
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - promote_model - STEP_START - Started execution of step "promote_model".
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - promote_model - Loading file from: /app/dagster_home/storage/best_model using PickledObjectFilesystemIOManager...
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - promote_model - LOADED_INPUT - Loaded input "best_model" using input manager "io_manager", from output "result" of step "best_model"
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - promote_model - STEP_INPUT - Got input "best_model" of type "String". (Type check passed).
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - promote_model - STEP_OUTPUT - Yielded output "result" of type "Any". (Type check passed).
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - promote_model - Writing file at: /app/dagster_home/storage/promote_model using PickledObjectFilesystemIOManager...
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - promote_model - ASSET_MATERIALIZATION - Materialized value promote_model.
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - promote_model - HANDLED_OUTPUT - Handled output "result" using IO manager "io_manager"
+2026-04-16 15:22:32 +0000 - dagster - DEBUG - full_pipeline_job - d727c158-f53a-415c-8492-b6772520688d - 8009 - promote_model - STEP_SUCCESS - Finished execution of step "promote_model" in 408ms.

@@ -1,19 +1,43 @@
 [project]
 name = "07-mlflow-dvc-dagster-integration-alexiia99"
 version = "0.1.0"
-description = "Add your description here"
+description = "Attrition MLOps Pipeline"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "mlflow>=3.10.0",
+    "pandas>=2.3.3",
+    "scikit-learn>=1.7.2",
+    "pyyaml>=6.0.3",
+]
+
+[dependency-groups]
+training = [
     "dagster>=1.12.16",
     "dagster-webserver>=1.12.17",
     "dvc>=3.66.1",
     "dvc-gdrive>=3.0.1",
-    "mlflow>=3.10.0",
     "optuna>=4.7.0",
-    "pandas>=2.3.3",
-    "pyyaml>=6.0.3",
-    "scikit-learn>=1.7.2",
+    "numpy>=1.24.0",
 ]
+
+serving = [
+    "fastapi>=0.133.1",
+    "uvicorn[standard]>=0.41.0",
+    "python-dotenv>=1.2.1",
+    "httpx>=0.28.1",
+]
+
+monitoring = [
+    "evidently==0.7.21",
+    "pandas",
+    "requests",
+    "pyyaml",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["attrition_mlops*", "fastapi_serving*"]
+
 [tool.dagster]
 module_name = "attrition_mlops.definitions"

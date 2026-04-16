@@ -1,0 +1,30 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+RUN useradd -m appuser
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+COPY --chown=appuser:appuser pyproject.toml uv.lock ./
+RUN uv sync --frozen --group monitoring --no-group training
+
+COPY --chown=appuser:appuser monitoring/ ./monitoring/
+COPY --chown=appuser:appuser data/ ./data/
+
+ENV DAGSTER_URL=http://dagster:3000
+ENV PREDICTIONS_LOG=/logs/predictions.csv
+ENV REFERENCE_DATA=/app/data/attrition_v1.csv
+ENV WORKSPACE_DIR=/workspace
+ENV CHECK_INTERVAL=120
+
+RUN mkdir -p /logs /workspace && \
+    chown appuser:appuser /logs /workspace
+
+RUN chmod +x monitoring/start.sh
+
+USER appuser
+
+EXPOSE 8000
+
+CMD ["sh", "monitoring/start.sh"]

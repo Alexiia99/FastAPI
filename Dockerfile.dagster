@@ -1,0 +1,26 @@
+FROM python:3.10-slim
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y git && rm -rf /var/lib/apt/lists/*
+
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --group training
+
+RUN git init && \
+    uv run dvc init --force && \
+    git add .dvc .dvcignore && \
+    git -c user.name="Docker" -c user.email="docker@localhost" commit -m "chore: init git + dvc"
+
+COPY attrition_mlops/ ./attrition_mlops/
+COPY data/ ./data/
+COPY config.yaml .
+
+ENV DAGSTER_HOME=/app/dagster_home
+RUN mkdir -p $DAGSTER_HOME
+
+EXPOSE 3000
+
+CMD ["uv", "run", "dagster", "dev", "-h", "0.0.0.0", "-p", "3000", "-m", "attrition_mlops.definitions"]

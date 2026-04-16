@@ -7,5 +7,5 @@ mlflow:
   model_name: "AttritionModel"
 
 optuna:
-  n_trials: 30
+  n_trials: 30   
   cv_splits: 5

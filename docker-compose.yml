@@ -1,0 +1,89 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mlops_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d mlops_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  mlflow:
+    build:
+      context: .
+      dockerfile: Dockerfile.mlflow
+    command: >
+      mlflow server
+      --backend-store-uri postgresql://user:password@postgres:5432/mlops_db
+      --artifacts-destination /mlartifacts
+      --serve-artifacts
+      --host 0.0.0.0
+      --allowed-hosts "*"
+    ports:
+      - "5000:5000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - mlartifacts:/mlartifacts
+    user: "1000:1000"
+
+  dagster:
+    build:
+      context: .
+      dockerfile: Dockerfile.dagster
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mlflow:
+        condition: service_started
+    volumes:
+      - ./dagster_home:/app/dagster_home
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.serving
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MODEL_URI: models:/AttritionModel@champion
+    ports:
+      - "8000:8000"
+    depends_on:
+      mlflow:
+        condition: service_started
+    restart: on-failure
+    volumes:
+      - predictions_logs:/logs
+
+  evidently:
+    build:
+      context: .
+      dockerfile: Dockerfile.evidently
+    volumes:
+      - predictions_logs:/logs
+      - ./data:/app/data
+      - evidently_workspace:/workspace
+    ports:
+      - "8001:8000"
+    depends_on:
+      - api
+      - dagster
+    environment:
+      DAGSTER_URL: http://dagster:3000
+      REFERENCE_DATA: /app/data/attrition_v1.csv
+
+volumes:
+  postgres_data:
+  mlartifacts:
+  predictions_logs:
+  evidently_workspace:
